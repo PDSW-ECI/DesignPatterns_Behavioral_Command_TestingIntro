@@ -45,7 +45,8 @@ public class CalculatorTest {
     public void testClaseEquivalenciaUno() {
         CalculadoraTarifas ct=new CalculadoraTarifas();
 
-        qt().forAll(range(0,17),range(0,20))
+        qt().forAll(range(0,17).describedAs(e -> "Edad = " + e)
+                   ,range(0,20).describedAs(d -> "DiasAntelacion = " + d))
             .check((edad,days) -> ct.calculoTarifa(tarifa,now, now.minus(days),edad) == tarifa * (1 - 0.05));
     }
 
