@@ -53,12 +53,11 @@ public class CalculadoraTarifas {
         }
         if (edad < 18) {
             descuentoEdad = 0.05f;
-        } else if (edad > 65){
-            descuentoEdad = 0.08f;
+        } else if (edad > 64){
+            descuentoEdad = 0.06f;
         }
+
         return tarifaBase * (1f - descuentoAntelacion) * (1f - descuentoEdad);
-        
-        return tarifaBase;
     }
 
 }
