@@ -31,15 +31,6 @@ import static org.quicktheories.generators.SourceDSL.*;
 
 public class CalculatorTest {
 
-/*    
-    @Test
-    public void testClaseEquivUno() throws Exception{
-        CalculadoraTarifas ct=new CalculadoraTarifas();
-        Assert.assertEquals("Se esta modificando el valor de la tarifa en un caso en el que no aplica ningun descuento.",new Float(1000),new Float(ct.calculoTarifa(1000, new DateTime(2015, 1, 20, 0, 0), new DateTime(2015, 1, 20, 0, 0), 30)));
-        
-    }
-*/
-
     private DateTime now;
     private float tarifa;
 
