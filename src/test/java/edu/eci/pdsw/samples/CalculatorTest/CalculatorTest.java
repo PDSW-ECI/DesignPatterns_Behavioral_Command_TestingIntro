@@ -16,20 +16,48 @@
  */
 package edu.eci.pdsw.samples.CalculatorTest;
 
+import edu.eci.pdsw.util.Pair;
 import edu.eci.pdsw.commandpattern_testing.CalculadoraTarifas;
+import edu.eci.pdsw.commandpattern_testing.ExcepcionParametrosInvalidos;
+
 import org.joda.time.DateTime;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
+import static org.quicktheories.QuickTheory.qt;
+import static org.quicktheories.generators.Generate.*;
+import static org.quicktheories.generators.SourceDSL.*;
 
 public class CalculatorTest {
-    
+
+/*    
     @Test
     public void testClaseEquivUno() throws Exception{
         CalculadoraTarifas ct=new CalculadoraTarifas();
         Assert.assertEquals("Se esta modificando el valor de la tarifa en un caso en el que no aplica ningun descuento.",new Float(1000),new Float(ct.calculoTarifa(1000, new DateTime(2015, 1, 20, 0, 0), new DateTime(2015, 1, 20, 0, 0), 30)));
         
     }
-    
+*/
+
+    private DateTime now;
+    private float tarifa;
+
+    @Before
+    public void init() {
+        now = new DateTime();
+        tarifa = 1000f;
+    }
+
+
+    @Test
+    public void testClaseEquivalenciaUno() {
+        CalculadoraTarifas ct=new CalculadoraTarifas();
+
+        qt().forAll(range(0,17),range(0,20))
+            // .as((edad,days) -> new Pair(edad,now.minus(days)))
+            .check((edad,days) -> ct.calculoTarifa(tarifa,now, now.minus(days),edad) == tarifa * (1 - 0.05));
+    }
+
     
 }

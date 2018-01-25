@@ -43,9 +43,22 @@ public class CalculadoraTarifas {
      * @throws ExcepcionParametrosInvalidos [XXXXXXXXXXXXXXXXXXXXXXXXXXX]
  *
      */
-    public float calculoTarifa(float tarifaBase, DateTime fechaActual, DateTime fechaVuelo, int edad) throws ExcepcionParametrosInvalidos{
-        
-        return 0f;
+    public float calculoTarifa(float tarifaBase, DateTime fechaActual, DateTime fechaVuelo, int edad)  {
+
+        float descuentoAntelacion = 0.0f;
+        float descuentoEdad = 0.0f;
+
+        DateTime fechaVueloPlus20 = fechaVuelo.plusDays(20);
+
+        if (fechaVueloPlus20.isBefore(fechaActual)) {
+            descuentoAntelacion = 0.15f;
+        }
+        if (edad < 18) {
+            descuentoEdad = 0.05f;
+        } else if (edad > 65){
+            descuentoEdad = 0.08f;
+        }
+        return tarifaBase * (1f - descuentoAntelacion) * (1f - descuentoEdad);
         
     }
 
