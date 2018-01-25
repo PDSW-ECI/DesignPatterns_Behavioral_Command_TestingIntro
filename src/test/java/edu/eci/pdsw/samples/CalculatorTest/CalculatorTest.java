@@ -55,9 +55,7 @@ public class CalculatorTest {
         CalculadoraTarifas ct=new CalculadoraTarifas();
 
         qt().forAll(range(0,17),range(0,20))
-            // .as((edad,days) -> new Pair(edad,now.minus(days)))
             .check((edad,days) -> ct.calculoTarifa(tarifa,now, now.minus(days),edad) == tarifa * (1 - 0.05));
     }
 
-    
 }
