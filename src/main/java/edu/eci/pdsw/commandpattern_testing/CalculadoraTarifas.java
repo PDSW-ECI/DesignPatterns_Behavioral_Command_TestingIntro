@@ -48,7 +48,7 @@ public class CalculadoraTarifas {
         float descuentoAntelacion = 0.0f;
         float descuentoEdad = 0.0f;
 
-        if (Days.daysBetween(fechaActual, fechaVuelo).getDays() > 20) {
+        if (Days.daysBetween(fechaVuelo, fechaActual).getDays() > 20) {
             descuentoAntelacion = 0.15f;
         }
         if (edad < 18) {
